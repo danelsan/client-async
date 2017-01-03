@@ -142,7 +142,8 @@ class AsyncClient implements IAsyncClient {
 			$options ['form_params'] = $post;
 		}
 	
-		$headers = $request->getHeaders ();
+		$headers = $this->getHeaders ( $request->getHeaders () );
+
 		if (! empty ( $headers ))
 			$options ['headers'] = $headers;
 		
@@ -152,5 +153,25 @@ class AsyncClient implements IAsyncClient {
 		$options ['stream'] = false;
 		$options ['track_redirects'] = true;
 		return $options;
+	}
+	
+	/**
+	 * Return headers with key like name
+	 */
+	private function getHeaders( array $headers ) {
+		if ( empty( $headers ) ) 
+			return $headers;
+		
+		$result = array();
+		foreach  ( $headers as $header ) {
+			$split = explode(': ', $header);
+			if ( count( $split ) == 2 ) {
+				$key = $split[0];
+				$value = $split[1];
+				$result[$key] = $value;
+			}
+		}
+		return $result;
+		
 	}
 }
