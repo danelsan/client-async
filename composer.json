@@ -4,8 +4,8 @@
 	"description": "Client request an API asyncronly",   
 	"require": {
 		"php": ">=5.5.0",
-		"guzzlehttp/guzzle": "~6.0.2",
-		"firebase/php-jwt": "^2.2",
+		"guzzlehttp/guzzle": "*",
+		"firebase/php-jwt": "*",
 		"danelsan/http": "dev-master"
     	},
 	"autoload": {
